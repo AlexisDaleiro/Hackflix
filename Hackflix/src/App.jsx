@@ -8,23 +8,9 @@ import Estrellas from "./components/Estrellas";
 import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
 function App() {
-<<<<<<< Updated upstream
-  return (
-    <>
-      <div className="container-fluid">
-        <div>
-          <Navbar />
-          <Buscador />
-          <Estrellas />
-          <Api />
-        </div>
-      </div>
-    </>
-  );
-=======
 	return (
 		<>
-			<div className="container-fluid, bg-dark">
+			<div className="container-fluid bg-dark">
 				<div>
 					<Navbar />
 					<Banner />
@@ -34,7 +20,6 @@ function App() {
 			</div>
 		</>
 	);
->>>>>>> Stashed changes
 }
 
 export default App;
