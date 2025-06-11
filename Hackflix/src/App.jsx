@@ -5,11 +5,13 @@ import "./App.css";
 import Api from "./components/ApiInicio";
 import Buscador from "./components/Buscador";
 import Estrellas from "./components/Estrellas";
+import Navbar from "./components/Menu";
 function App() {
   return (
     <>
       <div className="container-fluid">
         <div>
+          <Navbar/>
           <Buscador />
           <Estrellas />
           <Api />

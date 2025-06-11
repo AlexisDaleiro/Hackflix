@@ -1,15 +1,16 @@
 import React from "react";
-import './Navbar.css';
-
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
     return(
-<nav className="navbar"> <div className="navbar-brand">
-        <img src="Hackflix\src\assets\logo.png" alt="" />
+<nav className="navbar"> 
+    
+    <div className="navbar-brand">
+        <img src={logo} alt="" />
       </div>
+
       <div> <a href="/usuario">INICIAR SESIÓN</a></div>
          
-        
       </nav>
     )
 };
