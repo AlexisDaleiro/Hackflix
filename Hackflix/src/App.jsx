@@ -11,7 +11,7 @@ function App() {
     <>
       <div className="container-fluid">
         <div>
-          <Navbar/>
+          <Navbar />
           <Buscador />
           <Estrellas />
           <Api />
