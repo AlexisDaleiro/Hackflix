@@ -8,6 +8,7 @@ import Estrellas from "./components/Estrellas";
 import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
 function App() {
+<<<<<<< HEAD
 	return (
 		<>
 			<div className="container-fluid bg-dark">
@@ -20,6 +21,20 @@ function App() {
 			</div>
 		</>
 	);
+=======
+  return (
+    <>
+      <div className="container-fluid p-0">
+        <div>
+          <Navbar/>
+          <Buscador />
+          <Estrellas />
+          <Api />
+        </div>
+      </div>
+    </>
+  );
+>>>>>>> 0090d3f4fcd6be77032ec56cf866157005d6a843
 }
 
 export default App;

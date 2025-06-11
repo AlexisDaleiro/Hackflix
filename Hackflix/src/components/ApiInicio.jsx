@@ -16,15 +16,10 @@ export default function (props) {
   }, []);
   return (
     pelicula && (
-<<<<<<< HEAD
       <div className="d-flex overflow-auto flex-nowrap">
-=======
-      <div className="row ">
->>>>>>> 4e6fe901b8be8eee973e06417392151576dc8fe5
         {pelicula.results.map((item) => (
           <div key={item.id} className="me-3">
             <div className="m-1">
-<<<<<<< HEAD
               <img
                 src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                 alt={item.title}
@@ -35,19 +30,6 @@ export default function (props) {
                 }}
                 className="rounded-3"
               />
-=======
-              <a href="">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                  alt={item.title}
-                  style={{
-                    height: "300px",
-                    objectFit: "cover",
-                    width: "200px",
-                  }}
-                />
-              </a>
->>>>>>> 4e6fe901b8be8eee973e06417392151576dc8fe5
             </div>
           </div>
         ))}
