@@ -1,17 +1,18 @@
 import React from "react";
 import logo from "../assets/logo.png"
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
     return(
-<nav className="navbar"> 
+
+<nav class="navbar">
     
     <div className="navbar-brand">
-        <img src={logo} alt="" />
+        <img src={logo} alt="" width={"175px"} />
       </div>
-
-      <div> <a href="/usuario">INICIAR SESIÓN</a></div>
-         
-      </nav>
+<button class="texto-solo">INICIAR SESIÓN <FaUser /></button>
+    
+    </nav>
     )
 };
 export default Navbar
