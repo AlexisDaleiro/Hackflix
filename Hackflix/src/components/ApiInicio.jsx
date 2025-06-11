@@ -16,9 +16,9 @@ export default function (props) {
   }, []);
   return (
     pelicula && (
-      <div className="row justify-content-center">
+      <div className="d-flex overflow-auto flex-nowrap">
         {pelicula.results.map((item) => (
-          <div key={item.id} className="col-md-2">
+          <div key={item.id} className="me-3">
             <div className="m-1">
               <img
                 src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
@@ -28,6 +28,7 @@ export default function (props) {
                   objectFit: "cover",
                   width: "200px",
                 }}
+                className="rounded-3"
               />
             </div>
           </div>
