@@ -9,7 +9,7 @@ function Estrellas() {
   };
 
   return (
-    <div className="App">
+    <div className="d-flex justify-content-center">
       <Rating onClick={handleRating} initialValue={rating} />
     </div>
   );
