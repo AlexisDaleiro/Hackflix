@@ -8,33 +8,18 @@ import Estrellas from "./components/Estrellas";
 import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
 function App() {
-<<<<<<< HEAD
-	return (
-		<>
-			<div className="container-fluid bg-dark">
-				<div>
-					<Navbar />
-					<Banner />
-					<Estrellas />
-					<Api />
-				</div>
-			</div>
-		</>
-	);
-=======
   return (
     <>
-      <div className="container-fluid p-0">
+      <div className="container-fluid bg-dark">
         <div>
-          <Navbar/>
-          <Buscador />
+          <Navbar />
+          <Banner />
           <Estrellas />
           <Api />
         </div>
       </div>
     </>
   );
->>>>>>> 0090d3f4fcd6be77032ec56cf866157005d6a843
 }
 
 export default App;
