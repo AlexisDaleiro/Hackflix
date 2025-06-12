@@ -10,14 +10,10 @@ import Banner from "./components/BannerPrincipal";
 function App() {
   return (
     <>
-      <div className="container-fluid bg-dark">
-        <div>
-          <Navbar />
-          <Banner />
-          <Estrellas />
-          <Api />
-        </div>
-      </div>
+      <Navbar />
+      <Banner />
+
+      <Api />
     </>
   );
 }

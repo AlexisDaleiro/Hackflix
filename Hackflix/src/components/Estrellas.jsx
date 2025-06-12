@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 
-function Estrellas() {
-  const [rating, setRating] = useState(0);
-
+function Estrellas({ filtro, setFiltro }) {
   const handleRating = (rate) => {
-    setRating(rate);
+    setFiltro(rate);
   };
 
   return (
-    <div className="d-flex justify-content-center">
-      <Rating onClick={handleRating} initialValue={rating} />
+    <div className="d-flex justify-content-center align-items-center my-2">
+      <h3 className="text-white">Filtrar por estrellas : </h3>{" "}
+      <Rating onClick={handleRating} initialValue={filtro} size={30} />
     </div>
   );
 }
