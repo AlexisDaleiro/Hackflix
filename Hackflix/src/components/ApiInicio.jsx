@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Estrellas from "../components/Estrellas";
-import "react-horizontal-scrolling-menu/dist/styles.css";
 
 export default function ApiInicio() {
   const [pelicula, setPelicula] = useState(null);
