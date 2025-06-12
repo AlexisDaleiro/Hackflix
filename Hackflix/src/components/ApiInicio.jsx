@@ -7,22 +7,34 @@ export default function ApiInicio() {
   const [filtro, setFiltro] = useState(0);
 
   useEffect(() => {
-    const getPeliculas = async () => {
-      let url = "";
+  const getPeliculas = async () => {
+    const voteAverage = filtro * 2; // por ejemplo, filtro=3 → 6 estrellas (de 10)
 
-      if (filtro === 0) {
-        url = `https://api.themoviedb.org/3/movie/popular?api_key=51f5870eb2fb3938f2ca55d7c2326f86`;
-      } else {
-        const voteAverage = filtro * 2;
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=51f5870eb2fb3938f2ca55d7c2326f86&vote_average.gte=${voteAverage}`;
-      }
-
-      const response = await axios.get(url);
-      setPelicula(response.data);
+    const params = {
+      include_adult: 'false',
+      include_video: 'false',
+      language: 'en-US',
+      page: '1',
+      sort_by: 'popularity.desc',
+      'vote_count.gte': '100',
+      'vote_average.gte': filtro > 0 ? voteAverage - 2 : 0, // rango inferior (por ejemplo 4)
+      'vote_average.lte': filtro > 0 ? voteAverage : 10,     // rango superior (por ejemplo 6)
+      api_key: '51f5870eb2fb3938f2ca55d7c2326f86'
     };
 
-    getPeliculas();
-  }, [filtro]);
+    try {
+      const response = await axios.get(
+        'https://api.themoviedb.org/3/discover/movie',
+        { params }
+      );
+      setPelicula(response.data);
+    } catch (error) {
+      console.error('Error al obtener películas:', error);
+    }
+  };
+
+  getPeliculas();
+}, [filtro]);
 
   return (
     pelicula && (
@@ -47,7 +59,8 @@ export default function ApiInicio() {
                       className="rounded-3"
                     />
                     <div style={{ textAlign: "center", marginTop: "5px" }}>
-                      ⭐ {(item.vote_average / 2).toFixed(0)}
+                      ⭐ {(item.vote_average)},
+                      {item.vote_count}
                     </div>
                   </a>
                 </div>
