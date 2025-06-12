@@ -1,10 +1,22 @@
-import { useState } from "react";
+import axios from "axios";
+
+import { useEffect, useState } from "react";
 
 function Buscador() {
+  const [buscador, setbuscador] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
   });
-
+  useEffect(() => {
+    const getBuscador = async () => {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=51f5870eb2fb3938f2ca55d7c2326f86&query=
+${formData.title}`
+      );
+      setbuscador(response.data);
+    };
+    getBuscador();
+  }, [formData.title]);
   const handleChange = (e) => {
     setFormData({
       ...formData,

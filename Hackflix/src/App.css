@@ -6,11 +6,14 @@
   background: #1a1a1a;
 }
 .texto-solo {
-  background: none;
-  border: none;
+  background-color: rgba(167, 21, 21, 0.274);
+  border-radius: 20px;
   color: white;
-  font: inherit;
-  padding: 0;
+  padding: 10px;
   cursor: pointer;
   margin-right: 20px;
+}
+
+.texto-solo:hover {
+  background-color: rgba(255, 0, 0, 0.341);
 }
