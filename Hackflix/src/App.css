@@ -1,20 +1,16 @@
-<<<<<<< HEAD
-
-=======
 .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 80px;
-      background: #1a1a1a;
-    }
-.texto-solo {
-  background: none;      
-  border: none;          
-  color: white;        
-  font: inherit;        
-  padding: 0;           
-  cursor: pointer;   
-  margin-right: 20px;   
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+	background: #1a1a1a;
 }
->>>>>>> 0090d3f4fcd6be77032ec56cf866157005d6a843
+.texto-solo {
+	background: none;
+	border: none;
+	color: white;
+	font: inherit;
+	padding: 0;
+	cursor: pointer;
+	margin-right: 20px;
+}
