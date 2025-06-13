@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Estrellas from "../components/Estrellas";
-import { useRef } from "react";
 
 export default function ApiInicio() {
   const [pelicula, setPelicula] = useState(null);
   const [filtro, setFiltro] = useState(0);
   const scrollRef = useRef();
+
   const scrollLeft = () => {
     scrollRef.current.scrollBy({
       left: -300,
@@ -14,16 +14,16 @@ export default function ApiInicio() {
     });
   };
 
-  const scrollRigth = () => {
+  const scrollRight = () => {
     scrollRef.current.scrollBy({
-      rigth: 300,
+      left: 300,
       behavior: "smooth",
     });
   };
 
   useEffect(() => {
     const getPeliculas = async () => {
-      const voteAverage = filtro * 2; // por ejemplo, filtro=3 → 6 estrellas (de 10)
+      const voteAverage = filtro * 2;
 
       const params = {
         include_adult: "false",
@@ -32,8 +32,8 @@ export default function ApiInicio() {
         page: "1",
         sort_by: "popularity.desc",
         "vote_count.gte": "100",
-        "vote_average.gte": filtro > 0 ? voteAverage - 2 : 0, // rango inferior (por ejemplo 4)
-        "vote_average.lte": filtro > 0 ? voteAverage : 10, // rango superior (por ejemplo 6)
+        "vote_average.gte": filtro > 0 ? voteAverage - 2 : 0,
+        "vote_average.lte": filtro > 0 ? voteAverage : 10,
         api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
       };
 
@@ -53,7 +53,7 @@ export default function ApiInicio() {
 
   return (
     pelicula && (
-      <div className="container-fluid py-3 m-0 ">
+      <div className="container-fluid py-3 m-0">
         <Estrellas filtro={filtro} setFiltro={setFiltro} />
         <div className="row">
           <div className="col-1">
@@ -69,7 +69,7 @@ export default function ApiInicio() {
               .map((item) => (
                 <div key={item.id} className="me-3">
                   <div className="m-1">
-                    <a href="" className="text-decoration-none text-white">
+                    <a href="#" className="text-decoration-none text-white">
                       <img
                         src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                         alt={item.title}
@@ -81,7 +81,7 @@ export default function ApiInicio() {
                         className="rounded-3"
                       />
                       <div style={{ textAlign: "center", marginTop: "5px" }}>
-                        ⭐ {item.vote_average},{item.vote_count}
+                        ⭐ {item.vote_average}, {item.vote_count}
                       </div>
                     </a>
                   </div>
@@ -90,7 +90,7 @@ export default function ApiInicio() {
           </div>
 
           <div className="col-1 ps-4">
-            <button onClick={scrollRigth}>◀</button>
+            <button onClick={scrollRight}>▶</button>
           </div>
         </div>
       </div>
