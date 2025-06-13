@@ -55,7 +55,7 @@ export default function ApiInicio() {
 
   return (
     pelicula && (
-      <div className="container-fluid py-3 m-0">
+      <div className="container-fluid 1 m-0 ">
         <Estrellas filtro={filtro} setFiltro={setFiltro} />
         <div className="row">
           <div className="col-1 m">
