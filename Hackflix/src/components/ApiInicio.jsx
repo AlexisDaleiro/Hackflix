@@ -60,7 +60,7 @@ export default function ApiInicio() {
                       className="rounded-3"
                     />
                     <div style={{ textAlign: "center", marginTop: "5px" }}>
-                      ⭐ {item.vote_average.toFixed(1)}
+                      ⭐ {(item.vote_average / 2).toFixed(1)}
                     </div>
                   </a>
                 </div>
