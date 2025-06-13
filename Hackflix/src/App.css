@@ -1,19 +1,68 @@
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 70px;
-	background: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background: #00000012;
 }
 .texto-solo {
-	background-color: rgba(167, 21, 21, 0.274);
-	border-radius: 20px;
-	color: white;
-	padding: 10px;
-	cursor: pointer;
-	margin-right: 20px;
+  background-color: rgba(167, 21, 21, 0.274);
+  border-radius: 20px;
+  color: white;
+  width: 150px;
+  cursor: pointer;
 }
 
 .texto-solo:hover {
-	background-color: rgba(255, 0, 0, 0.341);
+  background-color: rgba(255, 0, 0, 0.341);
+}
+
+.fondo {
+  background: #750f0f12;
+}
+
+.banner {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.menu-container {
+  position: relative; /* Permite posicionar el submenu */
+  display: inline-block; /* Para que el menú principal se comporte como bloque */
+  background-color: black;
+}
+
+.submenu {
+  display: none; /* Oculta el submenu por defecto */
+  position: absolute; /* Posiciona el submenu con respecto al contenedor */
+  background-color: #020000;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Asegura que el submenu esté encima */
+}
+
+.submenu a {
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.submenu a:hover {
+  background-color: #c60a0a;
+}
+
+.menu-container:hover .submenu {
+  display: block; /* Muestra el submenu al pasar el cursor */
 }
