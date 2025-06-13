@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import Estrellas from "../components/Estrellas";
+import { RightArrow } from "../assets/RightArrow";
+import { LeftArrow } from "../assets/LeftArrow";
 
 export default function ApiInicio() {
   const [pelicula, setPelicula] = useState(null);
@@ -56,12 +58,14 @@ export default function ApiInicio() {
       <div className="container-fluid py-3 m-0">
         <Estrellas filtro={filtro} setFiltro={setFiltro} />
         <div className="row">
-          <div className="col-1">
-            <button onClick={scrollLeft}>◀</button>
+          <div className="col-1 m">
+           <button className="mt-5" onClick={scrollLeft} style={{ background: "none", border: "none" }}>
+            <LeftArrow />
+          </button>
           </div>
 
           <div
-            className="d-flex overflow-auto flex-nowrap col-10"
+            className="d-flex overflow-hidden flex-nowrap col-10"
             ref={scrollRef}
           >
             {pelicula.results
@@ -90,7 +94,10 @@ export default function ApiInicio() {
           </div>
 
           <div className="col-1 ps-4">
-            <button onClick={scrollRight}>▶</button>
+            
+          <button onClick={scrollRight} style={{ background: "none", border: "none" }}>
+            <RightArrow />
+          </button>
           </div>
         </div>
       </div>
