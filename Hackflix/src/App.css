@@ -66,3 +66,7 @@
 .menu-container:hover .submenu {
   display: block; /* Muestra el submenu al pasar el cursor */
 }
+
+.menu-principal {
+  width: 150px;
+}

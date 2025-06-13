@@ -1,6 +1,6 @@
 export default function Submenu({ name, opcion, opcion1, opcion2, opcion3 }) {
   return (
-    <div className="col-2 justify-content-center">
+    <div className="col-1 justify-content-center">
       <div className="menu-container">
         <button className="menu-principal btn btn-dark">{name}</button>
         <div className="submenu">

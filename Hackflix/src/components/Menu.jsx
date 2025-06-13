@@ -32,30 +32,31 @@ const Navbar = () => {
                 <img src={logo} alt="" width={"160px"} className="" />
               </div>
             </div>
-
-            <Submenu
-              name={"Peliculas"}
-              opcion={"Thriller"}
-              opcion1={"Comedia"}
-              opcion2={"Suspenso"}
-              opcion3={"Drama"}
-            />
-            <Submenu
-              name={"Series"}
-              opcion={"Documentales"}
-              opcion1={"Veridica"}
-              opcion2={"Infantiles"}
-              opcion3={"Anime"}
-            />
-            <Submenu
-              name={"Programas de TV"}
-              opcion={"Paises"}
-              opcion1={"Futbol"}
-              opcion2={"Critica"}
-              opcion3={"Actualidad"}
-            />
-
-            <div className="col-2 justify-content-end d-flex p-0 ">
+            <div className="col-3 d-flex justify-content-between">
+              <Submenu
+                name={"Peliculas"}
+                opcion={"Thriller"}
+                opcion1={"Comedia"}
+                opcion2={"Suspenso"}
+                opcion3={"Drama"}
+                name1={"asdasda"}
+              />
+              <Submenu
+                name={"Series"}
+                opcion={"Documentales"}
+                opcion1={"Veridica"}
+                opcion2={"Infantiles"}
+                opcion3={"Anime"}
+              />
+              <Submenu
+                name={"Programas de TV"}
+                opcion={"Paises"}
+                opcion1={"Futbol"}
+                opcion2={"Critica"}
+                opcion3={"Actualidad"}
+              />
+            </div>
+            <div className="col-5 justify-content-end d-flex p-0 ">
               <button onClick={handleLoginClick} className="texto-solo">
                 {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"} <FaUser />
               </button>
