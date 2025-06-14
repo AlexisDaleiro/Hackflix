@@ -39,7 +39,6 @@ const Navbar = () => {
                 opcion1={"Comedia"}
                 opcion2={"Suspenso"}
                 opcion3={"Drama"}
-                name1={"asdasda"}
               />
               <Submenu
                 name={"Series"}

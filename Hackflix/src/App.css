@@ -70,3 +70,27 @@
 .menu-principal {
   width: 150px;
 }
+
+.submenu ul {
+  list-style: none; /* Quita viñetas */
+  padding: 0;
+  margin: 0;
+}
+
+.submenu li {
+  position: relative; /* Permite posicionar los submenús */
+}
+
+.submenu li ul {
+  display: none; /* Oculta los submenús */
+  position: absolute;
+  top: 100%;
+  left: 150px;
+  width: 150px;
+}
+
+.submenu li:hover > ul {
+  display: block; /* Muestra el submenú al pasar el ratón */
+  background-color: black;
+  top: 20%;
+}

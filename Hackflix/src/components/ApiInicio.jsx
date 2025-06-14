@@ -55,13 +55,17 @@ export default function ApiInicio() {
 
   return (
     pelicula && (
-      <div className="container-fluid 1 m-0 ">
+      <div className="container-fluid ">
         <Estrellas filtro={filtro} setFiltro={setFiltro} />
         <div className="row">
-          <div className="col-1 m">
-           <button className="mt-5" onClick={scrollLeft} style={{ background: "none", border: "none" }}>
-            <LeftArrow />
-          </button>
+          <div className="col-1 ">
+            <button
+              className="mt-5"
+              onClick={scrollLeft}
+              style={{ background: "none", border: "none" }}
+            >
+              <LeftArrow />
+            </button>
           </div>
 
           <div
@@ -85,7 +89,7 @@ export default function ApiInicio() {
                         className="rounded-3"
                       />
                       <div style={{ textAlign: "center", marginTop: "5px" }}>
-                        ⭐ {item.vote_average}, {item.vote_count}
+                        ⭐ {item.vote_average.toFixed(1)}
                       </div>
                     </a>
                   </div>
@@ -93,11 +97,14 @@ export default function ApiInicio() {
               ))}
           </div>
 
-          <div className="col-1 ps-4">
-            
-          <button onClick={scrollRight} style={{ background: "none", border: "none" }}>
-            <RightArrow />
-          </button>
+          <div className="col-1 ">
+            <button
+              onClick={scrollRight}
+              style={{ background: "none", border: "none" }}
+              className="mt-5"
+            >
+              <RightArrow />
+            </button>
           </div>
         </div>
       </div>
