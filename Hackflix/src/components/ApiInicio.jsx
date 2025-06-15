@@ -53,61 +53,57 @@ export default function ApiInicio() {
     getPeliculas();
   }, [filtro]);
 
-  return (
-    pelicula && (
-      <div className="container-fluid ">
-        <Estrellas filtro={filtro} setFiltro={setFiltro} />
-        <div className="row">
-          <div className="col-1 ">
-            <button
-              className="mt-5"
-              onClick={scrollLeft}
-              style={{ background: "none", border: "none" }}
-            >
-              <LeftArrow />
-            </button>
-          </div>
+return (
+  pelicula && (
+    <div className="container-fluid position-relative">
+      <Estrellas filtro={filtro} setFiltro={setFiltro} />
 
-          <div
-            className="d-flex overflow-hidden flex-nowrap col-10"
-            ref={scrollRef}
-          >
-            {pelicula.results
-              .filter((item) => item.poster_path !== null)
-              .map((item) => (
-                <div key={item.id} className="me-3">
-                  <div className="m-1">
-                    <a href="#" className="text-decoration-none text-white">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                        alt={item.title}
-                        style={{
-                          height: "300px",
-                          objectFit: "cover",
-                          width: "200px",
-                        }}
-                        className="rounded-3"
-                      />
-                      <div style={{ textAlign: "center", marginTop: "5px" }}>
-                        ⭐ {item.vote_average.toFixed(1)}
-                      </div>
-                    </a>
-                  </div>
+      <div className="scroll-container">
+        <button onClick={scrollLeft} className="scroll-button left">
+          <LeftArrow />
+        </button>
+
+        <div
+          className="d-flex overflow-hidden flex-nowrap px-5"
+          ref={scrollRef}
+        >
+          {pelicula.results
+            .filter((item) => item.poster_path !== null)
+            .map((item) => (
+              <div key={item.id} className="card-container me-3">
+                <div className="position-relative">
+                  <a href="#" className="text-decoration-none text-white">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                      alt={item.title}
+                      className="movie-img"
+                    />
+
+                      <div className="info-overlay p-2">
+                        <h5>{item.title}</h5>
+                        <p>{item.overview.length > 100 ? item.overview.slice(0, 100) + "..." : item.overview}</p>
+
+
+
+
+               </div>
+                    <div style={{ textAlign: "center", marginTop: "5px" }}>
+                      ⭐ {item.vote_average.toFixed(1)}
+                    </div>
+                  </a>
                 </div>
-              ))}
-          </div>
 
-          <div className="col-1 ">
-            <button
-              onClick={scrollRight}
-              style={{ background: "none", border: "none" }}
-              className="mt-5"
-            >
-              <RightArrow />
-            </button>
-          </div>
+              
+
+              </div>
+))}
+
         </div>
+        <button onClick={scrollRight} className="scroll-button right">
+          <RightArrow />
+        </button>
       </div>
-    )
-  );
+    </div>
+  )
+);
 }
