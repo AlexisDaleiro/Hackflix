@@ -7,47 +7,15 @@ export default function Submenu({ name, opcion, opcion1, opcion2, opcion3 }) {
           <ul>
             <li>
               <a href="#">{opcion} </a>
-              <ul>
-                <li>
-                  <a href="#">Submenú 1</a>
-                </li>
-                <li>
-                  <a href="#">Submenú 2</a>
-                </li>
-              </ul>
             </li>
             <li>
               <a href="#">{opcion1} </a>
-              <ul>
-                <li>
-                  <a href="#">Submenú 1</a>
-                </li>
-                <li>
-                  <a href="#">Submenú 2</a>
-                </li>
-              </ul>
             </li>
             <li>
               <a href="#">{opcion2} </a>
-              <ul>
-                <li>
-                  <a href="#">Submenú 1</a>
-                </li>
-                <li>
-                  <a href="#">Submenú 2</a>
-                </li>
-              </ul>
             </li>
             <li>
               <a href="#">{opcion3} </a>
-              <ul>
-                <li>
-                  <a href="#">Submenú 1</a>
-                </li>
-                <li>
-                  <a href="#">Submenú 2</a>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

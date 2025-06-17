@@ -88,7 +88,7 @@ export default function ApiInicio({ searchTerm, children }) {
                       </p>
                     </div>
                     <div style={{ textAlign: "center", marginTop: "5px" }}>
-                      ⭐ {item.vote_average.toFixed(1)}
+                      ⭐ {(item.vote_average / 2).toFixed(0)}
                     </div>
                   </a>
                 </div>
