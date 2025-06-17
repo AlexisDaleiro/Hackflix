@@ -2,16 +2,23 @@ import "./App.css";
 import Api from "./components/ApiInicio";
 import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
-import { use, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
       <Navbar />
-      <Banner />
-      <Api />
+      <Banner setSearchTerm={setSearchTerm} />
+      <Api searchTerm={searchTerm}>
+        {searchTerm && (
+          <p className="text-white px-5">
+            Resultados para: <strong>{searchTerm}</strong>
+          </p>
+        )}
+      </Api>
     </>
   );
 }
