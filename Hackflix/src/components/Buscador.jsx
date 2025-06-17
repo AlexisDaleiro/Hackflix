@@ -5,18 +5,23 @@ function Buscador({ setSearchTerm, isInBanner = false }) {
 
   const handleChange = (e) => {
     setInput(e.target.value);
+
+    if (value.trim() === "") {
+      setSearchTerm("");
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm(input);
+    setInput("");
   };
 
   return (
     <form
       onSubmit={handleSubmit}
       className="d-flex"
-      style={{ maxWidth: "500px", width: "100%" }}
+      style={{ maxWidth: "500px", width: "100%", marginTop: "100px" }}
     >
       <input
         type="text"

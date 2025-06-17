@@ -14,7 +14,7 @@ function App() {
       <Banner setSearchTerm={setSearchTerm} />
       <Api searchTerm={searchTerm}>
         {searchTerm && (
-          <p className="text-white px-5">
+          <p className="text-white px-5 fs-3 mt-3 mb-5">
             Resultados para: <strong>{searchTerm}</strong>
           </p>
         )}
