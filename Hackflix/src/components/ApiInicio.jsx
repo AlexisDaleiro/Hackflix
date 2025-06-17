@@ -7,6 +7,10 @@ import { RightArrow } from "../assets/RightArrow";
 export default function ApiInicio({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
   const [filtro, setFiltro] = useState(0);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const scrollRef = useRef();
 
   const scrollLeft = () => {
@@ -17,42 +21,79 @@ export default function ApiInicio({ searchTerm, children }) {
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
   };
 
+  const fetchPeliculas = async (pagina = 1, reset = false) => {
+    if (isLoading || !hasMore) return;
+    setIsLoading(true);
+
+    try {
+      let url, params;
+
+      if (searchTerm) {
+        url = "https://api.themoviedb.org/3/search/movie";
+        params = {
+          api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
+          query: searchTerm,
+          page: pagina,
+        };
+      } else {
+        url = "https://api.themoviedb.org/3/discover/movie";
+        const voteAverage = filtro * 2;
+        params = {
+          include_adult: false,
+          include_video: false,
+          language: "en-US",
+          sort_by: "popularity.desc",
+          "vote_count.gte": 100,
+          "vote_average.gte": filtro > 0 ? voteAverage - 2 : 0,
+          "vote_average.lte": filtro > 0 ? voteAverage : 10,
+          api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
+          page: pagina,
+        };
+      }
+
+      const response = await axios.get(url, { params });
+      const nuevas = response.data.results || [];
+
+      if (reset) {
+        setPeliculas(nuevas);
+      } else {
+        setPeliculas((prev) => [...prev, ...nuevas]);
+      }
+
+      setHasMore(pagina < response.data.total_pages);
+    } catch (error) {
+      console.error("Error al cargar películas:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchPeliculas = async () => {
-      try {
-        let url, params;
+    setPeliculas([]);
+    setPage(1);
+    setHasMore(true);
+    fetchPeliculas(1, true);
+  }, [searchTerm, filtro]);
 
-        if (searchTerm) {
-          url = "https://api.themoviedb.org/3/search/movie";
-          params = {
-            api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
-            query: searchTerm,
-          };
-        } else {
-          url = "https://api.themoviedb.org/3/discover/movie";
-          const voteAverage = filtro * 2;
-          params = {
-            include_adult: false,
-            include_video: false,
-            language: "en-US",
-            page: 1,
-            sort_by: "popularity.desc",
-            "vote_count.gte": 100,
-            "vote_average.gte": filtro > 0 ? voteAverage - 2 : 0,
-            "vote_average.lte": filtro > 0 ? voteAverage : 10,
-            api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
-          };
-        }
+  useEffect(() => {
+    const el = scrollRef.current;
 
-        const response = await axios.get(url, { params });
-        setPeliculas(response.data.results || []);
-      } catch (error) {
-        console.error("Error al cargar películas:", error);
+    const handleScroll = () => {
+      if (!el || !hasMore || isLoading) return;
+
+      const scrollRight = el.scrollLeft + el.clientWidth;
+      const maxScroll = el.scrollWidth;
+
+      if (maxScroll - scrollRight < 300) {
+        const nextPage = page + 1;
+        setPage(nextPage);
+        fetchPeliculas(nextPage);
       }
     };
 
-    fetchPeliculas();
-  }, [searchTerm, filtro]);
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, [page, hasMore, isLoading]);
 
   return (
     <div className="container-fluid position-relative mt-4">
@@ -67,12 +108,16 @@ export default function ApiInicio({ searchTerm, children }) {
         <div
           className="d-flex overflow-hidden flex-nowrap px-5"
           ref={scrollRef}
+          style={{ scrollBehavior: "smooth" }}
         >
           {peliculas.length > 0 ? (
             peliculas
               .filter((item) => item.poster_path)
               .map((item) => (
-                <div key={item.id} className="card-container me-3">
+                <div
+                  key={`${item.id}-${item.title}`}
+                  className="card-container me-3"
+                >
                   <a href="#" className="text-decoration-none text-white">
                     <img
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
@@ -102,6 +147,13 @@ export default function ApiInicio({ searchTerm, children }) {
           <RightArrow />
         </button>
       </div>
+
+      {isLoading && (
+        <div className="text-white text-center my-3">
+          <span className="spinner-border spinner-border-sm me-2" />
+          Cargando más películas...
+        </div>
+      )}
     </div>
   );
 }
