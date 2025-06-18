@@ -8,7 +8,6 @@ import Submenu from "./submenu";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [menuAbierto, setMenuAbierto] = useState(false);
 
   const handleLoginClick = () => {
     setShowModal(true);
@@ -57,7 +56,7 @@ const Navbar = () => {
               />
             </div>
             <div className="col-5 justify-content-end d-flex p-0 ">
-              <button onClick={handleLoginClick} className="texto-solo">
+              <button onClick={handleLoginClick} className="texto-solo me-2">
                 {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"} <FaUser />
               </button>
             </div>

@@ -18,11 +18,7 @@ function Buscador({ setSearchTerm, isInBanner = false }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="d-flex "
-      style={{ maxWidth: "720px", width: "100%", marginTop: "130px" }}
-    >
+    <form onSubmit={handleSubmit} className="d-flex buscador-responsivo">
       <input
         type="text"
         value={input}
