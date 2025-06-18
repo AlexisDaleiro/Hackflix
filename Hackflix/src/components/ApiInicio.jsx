@@ -36,16 +36,34 @@ export default function ApiInicio({ searchTerm, children }) {
           page: pagina,
         };
       } else {
+        let min = 0,
+          max = 10;
+        if (filtro === 1) {
+          min = 0;
+          max = 3.9;
+        } else if (filtro === 2) {
+          min = 4;
+          max = 5.9;
+        } else if (filtro === 3) {
+          min = 6;
+          max = 6.9;
+        } else if (filtro === 4) {
+          min = 7;
+          max = 7.9;
+        } else if (filtro === 5) {
+          min = 8;
+          max = 10;
+        }
+
         url = "https://api.themoviedb.org/3/discover/movie";
-        const voteAverage = filtro * 2;
         params = {
           include_adult: false,
           include_video: false,
           language: "en-US",
           sort_by: "popularity.desc",
           "vote_count.gte": 100,
-          "vote_average.gte": filtro > 0 ? voteAverage - 2 : 0,
-          "vote_average.lte": filtro > 0 ? voteAverage : 10,
+          "vote_average.gte": min,
+          "vote_average.lte": max,
           api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
           page: pagina,
         };
@@ -69,10 +87,14 @@ export default function ApiInicio({ searchTerm, children }) {
   };
 
   useEffect(() => {
-    setPeliculas([]);
-    setPage(1);
-    setHasMore(true);
-    fetchPeliculas(1, true);
+    const reiniciarYBuscar = async () => {
+      setPeliculas([]);
+      setHasMore(true);
+      setPage(1);
+      await fetchPeliculas(1, true);
+    };
+
+    reiniciarYBuscar();
   }, [searchTerm, filtro]);
 
   useEffect(() => {
@@ -114,10 +136,7 @@ export default function ApiInicio({ searchTerm, children }) {
             peliculas
               .filter((item) => item.poster_path)
               .map((item) => (
-                <div
-                  key={`${item.id}-${item.title}`}
-                  className="card-container me-3"
-                >
+                <div key={`${item.id}`} className="card-container me-3">
                   <a href="#" className="text-decoration-none text-white">
                     <img
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}

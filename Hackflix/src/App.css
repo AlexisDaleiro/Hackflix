@@ -179,3 +179,9 @@ html {
 .card-container:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .responsivo-menu {
+    display: none;
+  }
+}
