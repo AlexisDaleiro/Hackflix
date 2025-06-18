@@ -4,6 +4,8 @@ import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import Thriller from "./components/Triller";
+import Animacion from "./components/Accion";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +21,8 @@ function App() {
           </p>
         )}
       </Api>
+      <Thriller></Thriller>
+      <Animacion></Animacion>
       <Footer />
     </>
   );
