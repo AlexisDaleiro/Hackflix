@@ -1,12 +1,18 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 html {
 	background-color: black;
 =======
+=======
+>>>>>>> Stashed changes
 html,
 body {
   background-color: black;
   padding: 0;
   margin: 0;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -204,6 +210,11 @@ body {
 	.buscador-responsivo {
 		max-width: 80%;
 	}
+}
+
+.footer {
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
 .footer {
