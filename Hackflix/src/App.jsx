@@ -3,7 +3,7 @@ import Api from "./components/ApiInicio";
 import Navbar from "./components/Menu";
 import Banner from "./components/BannerPrincipal";
 import { useState } from "react";
-
+import Footer from "./components/Footer";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +19,7 @@ function App() {
           </p>
         )}
       </Api>
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,13 @@
+<<<<<<< Updated upstream
 html {
 	background-color: black;
+=======
+html,
+body {
+  background-color: black;
+  padding: 0;
+  margin: 0;
+>>>>>>> Stashed changes
 }
 
 .navbar {
@@ -196,4 +204,9 @@ html {
 	.buscador-responsivo {
 		max-width: 80%;
 	}
+}
+
+.footer {
+  padding: 0px !important;
+  margin: 0px !important;
 }
