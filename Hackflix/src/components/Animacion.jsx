@@ -31,13 +31,16 @@ export default function Animacion({ searchTerm, children }) {
         sort_by: "popularity.desc",
         include_adult: false,
         include_video: false,
-        with_genres: "12", // Accion
+        with_genres: "12", // Animacion
         page: pagina,
       };
 
-      const response = await axios.get("https://api.themoviedb.org/3/discover/movie", {
-        params,
-      });
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/discover/movie",
+        {
+          params,
+        }
+      );
 
       const nuevas = response.data.results || [];
 
@@ -101,7 +104,10 @@ export default function Animacion({ searchTerm, children }) {
       {children}
 
       {mostrarTitulo && (
-        <h2 className="text-white px-5 mb-3" style={{ transition: "0.3s ease" }}>
+        <h2
+          className="text-white px-5 mb-3"
+          style={{ transition: "0.3s ease" }}
+        >
           Animación
         </h2>
       )}
