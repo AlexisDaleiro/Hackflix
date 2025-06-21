@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import Thriller from "./components/Triller";
 import Animacion from "./components/Animacion";
 import PelisTv from "./components/PelisTv";
-import Animacion from "./components/Accion";
 import MovieLengua from "./components/MovieLengua";
 import MovieCarrousel from "./components/MovieCarrousel";
 
