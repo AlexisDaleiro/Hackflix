@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { LeftArrow } from "../assets/LeftArrow";
 import { RightArrow } from "../assets/RightArrow";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal } from "react-bootstrap";
 
 export default function Animacion({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
@@ -9,6 +11,8 @@ export default function Animacion({ searchTerm, children }) {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [mostrarTitulo, setMostrarTitulo] = useState(false);
+  const [modal, setModal] = useState(false);
+  const handleCloseModal = () => setModal(false);
 
   const scrollRef = useRef();
 
@@ -127,7 +131,14 @@ export default function Animacion({ searchTerm, children }) {
               .filter((item) => item.poster_path)
               .map((item) => (
                 <div key={item.id} className="card-container me-3">
-                  <a href="#" className="text-decoration-none text-white">
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault(); // evita que haga scroll arriba
+                      setModal(item.id);
+                    }}
+                    href="#"
+                    className="text-decoration-none text-white"
+                  >
                     <img
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                       alt={item.title}
@@ -163,6 +174,30 @@ export default function Animacion({ searchTerm, children }) {
           Cargando más películas...
         </div>
       )}
+      <div>
+        <Modal show={modal !== false} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Detalles de la pelicula</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="text-center">
+            {peliculas.map(
+              (item) =>
+                item.id === modal && (
+                  <div key={item.id}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                      alt={item.title}
+                      className="movie-img mb-3 shadow d-inline"
+                    />
+                    <h5>{item.title}</h5>
+                    <p>{item.overview}</p>
+                    <p>⭐ {(item.vote_average / 2).toFixed(0)}</p>
+                  </div>
+                )
+            )}
+          </Modal.Body>
+        </Modal>
+      </div>
     </div>
   );
 }

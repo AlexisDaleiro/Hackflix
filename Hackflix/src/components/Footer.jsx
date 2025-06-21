@@ -1,5 +1,5 @@
 import React from "react";
-
+import logo from "../assets/logo.png";
 export default function Footer() {
   return (
     <>
@@ -65,9 +65,12 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <div className="text-center mt-3">
+          <img src={logo} alt="" width={"160px"} />
+        </div>
         <div className="row ">
           <div className="col-12 text-center copyright p-2">
-            Todos los derechos reservados C
+            Todos los derechos reservados ©
           </div>
         </div>
       </div>

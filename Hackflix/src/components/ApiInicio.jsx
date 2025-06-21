@@ -4,7 +4,7 @@ import Estrellas from "./Estrellas";
 import { LeftArrow } from "../assets/LeftArrow";
 import { RightArrow } from "../assets/RightArrow";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 export default function ApiInicio({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
@@ -142,7 +142,10 @@ export default function ApiInicio({ searchTerm, children }) {
               .map((item) => (
                 <div key={`${item.id}`} className="card-container me-3">
                   <a
-                    onClick={() => setModal(item.id)}
+                    onClick={(e) => {
+                      e.preventDefault(); // evita que haga scroll arriba
+                      setModal(item.id);
+                    }}
                     href="#"
                     className="text-decoration-none text-white"
                   >
@@ -187,7 +190,7 @@ export default function ApiInicio({ searchTerm, children }) {
           <Modal.Header closeButton>
             <Modal.Title>Detalles de la pelicula</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="text-center">
             {peliculas.map(
               (item) =>
                 item.id === modal && (
@@ -195,7 +198,7 @@ export default function ApiInicio({ searchTerm, children }) {
                     <img
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                       alt={item.title}
-                      className="movie-img mb-3"
+                      className="movie-img mb-3 shadow d-inline"
                     />
                     <h5>{item.title}</h5>
                     <p>{item.overview}</p>
