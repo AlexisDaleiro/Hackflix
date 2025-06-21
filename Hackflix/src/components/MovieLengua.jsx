@@ -17,7 +17,7 @@ export default function MovieLengua({ searchTerm, children }) {
 
 
  useEffect(() => {
-  const ids = [637, 152601, 37165, 13]; 
+  const ids = [37165, 637, 152601, 13]; 
 
   const fetchPeliculas = async () => {
     const promises = ids.map(id =>
