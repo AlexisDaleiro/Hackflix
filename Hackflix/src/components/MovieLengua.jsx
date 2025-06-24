@@ -15,35 +15,33 @@ export default function MovieLengua({ searchTerm, children }) {
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const ids = [637, 152601, 37165, 13];
 
- useEffect(() => {
-  const ids = [37165, 637, 152601, 13]; 
+    const fetchPeliculas = async () => {
+      const promises = ids.map((id) =>
+        axios.get(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=51f5870eb2fb3938f2ca55d7c2326f86`
+        )
+      );
 
-  const fetchPeliculas = async () => {
-    const promises = ids.map(id =>
-      axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=51f5870eb2fb3938f2ca55d7c2326f86`)
-    );
+      const results = await Promise.all(promises);
+      setPeliculas(results.map((res) => res.data));
+    };
 
-    const results = await Promise.all(promises);
-    setPeliculas(results.map(res => res.data));
-  };
-
-  fetchPeliculas();
-}, []);
-
+    fetchPeliculas();
+  }, []);
 
   return (
     <div className="container-fluid position-relative mt-4">
       {children}
 
-        <h2 className="text-white px-5 mb-3" style={{ transition: "0.3s ease" }}>
-          Continuar viendo
-        </h2>
+      <h2 className="text-white px-5 mb-3" style={{ transition: "0.3s ease" }}>
+        Continuar viendo
+      </h2>
 
       <div className="scroll-container">
-        <button onClick={scrollLeft} className="scroll-button left">
-          <LeftArrow />
-        </button>
+        <button onClick={scrollLeft} className="scroll-button left"></button>
 
         <div
           className="d-flex overflow-hidden flex-nowrap px-5"
@@ -80,11 +78,8 @@ export default function MovieLengua({ searchTerm, children }) {
           )}
         </div>
 
-        <button onClick={scrollRight} className="scroll-button right">
-          <RightArrow />
-        </button>
+        <button onClick={scrollRight} className="scroll-button right"></button>
       </div>
-
     </div>
   );
 }

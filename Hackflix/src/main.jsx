@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createBrowerRouter } from "react-router-dom";
+import { createBrowserRouter, BrowserRouter } from "react-router-dom";
 
-const router = createBrowerRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -14,6 +14,8 @@ const router = createBrowerRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );

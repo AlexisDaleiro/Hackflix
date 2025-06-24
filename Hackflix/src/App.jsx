@@ -11,8 +11,6 @@ import PelisTv from "./components/PelisTv";
 import MovieLengua from "./components/MovieLengua";
 import MovieCarrousel from "./components/MovieCarrousel";
 
-
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,7 +19,7 @@ function App() {
     <>
       <Navbar />
       <Banner setSearchTerm={setSearchTerm} />
-<MovieLengua></MovieLengua>
+      <MovieLengua></MovieLengua>
       <Api searchTerm={searchTerm}>
         {searchTerm && (
           <p className="text-white px-5 fs-3 mt-2 mb-4">
@@ -29,7 +27,7 @@ function App() {
           </p>
         )}
       </Api>
-      
+
       <Thriller></Thriller>
       <Animacion></Animacion>
       <PelisTv></PelisTv>
