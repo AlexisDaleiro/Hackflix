@@ -19,7 +19,7 @@ function App() {
     <>
       <Navbar />
       <Banner setSearchTerm={setSearchTerm} />
-      <MovieLengua></MovieLengua>
+      <MovieCarrousel></MovieCarrousel>
       <Api searchTerm={searchTerm}>
         {searchTerm && (
           <p className="text-white px-5 fs-3 mt-2 mb-4">
