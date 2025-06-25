@@ -4,6 +4,7 @@ import { LeftArrow } from "../assets/LeftArrow";
 import { RightArrow } from "../assets/RightArrow";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Thriller({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
@@ -126,31 +127,30 @@ export default function Thriller({ searchTerm, children }) {
               .filter((item) => item.poster_path)
               .map((item) => (
                 <div key={item.id} className="card-container me-3">
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault(); // evita que haga scroll arriba
-                      setModal(item.id);
-                    }}
-                    href="#"
+                  <Link
                     className="text-decoration-none text-white"
+                    to={`/peliculas/${item.id}`}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                       alt={item.title}
                       className="movie-img"
                     />
+
                     <div className="info-overlay p-2">
                       <h5>{item.title}</h5>
-                      <p>
-                        {item.overview.length > 100
-                          ? item.overview.slice(0, 100) + "..."
-                          : item.overview}
-                      </p>
+                      <div className="contenedor-boton">
+                        <button className="vista-boton"
+                          onClick={(e) => {
+                            e.preventDefault(); // evita que haga scroll arriba
+                            setModal(item.id);
+                          }}
+                        >
+                          Vista previa
+                        </button>
+                      </div>
                     </div>
-                    <div style={{ textAlign: "center", marginTop: "5px" }}>
-                      ⭐ {(item.vote_average / 2).toFixed(0)}
-                    </div>
-                  </a>
+                  </Link>
                 </div>
               ))
           ) : (

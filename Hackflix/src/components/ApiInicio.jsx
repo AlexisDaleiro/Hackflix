@@ -158,8 +158,8 @@ export default function ApiInicio({ searchTerm, children }) {
 
                     <div className="info-overlay p-2">
                       <h5>{item.title}</h5>
-                      <div>
-                        <button
+                      <div className="contenedor-boton">
+                        <button className="vista-boton"
                           onClick={(e) => {
                             e.preventDefault(); // evita que haga scroll arriba
                             setModal(item.id);
@@ -171,7 +171,7 @@ export default function ApiInicio({ searchTerm, children }) {
                     </div>
                   </Link>
 
-                  <div style={{ textAlign: "center", marginTop: "5px" }}>
+                  <div style={{ textAlign: "center", marginTop: "5px", color: "white" }}>
                     ⭐ {(item.vote_average / 2).toFixed(0)}
                   </div>
                 </div>

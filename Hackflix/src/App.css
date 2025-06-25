@@ -146,6 +146,12 @@ body {
   width: auto;
 }
 
+.vista-boton{
+background-color: #c60a0a;
+color: white;
+}
+
+
 /* .movie-img {
   height: 300px;
   object-fit: cover;
@@ -171,6 +177,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  text-align: center;    /* Centra el texto dentro del h5 */
+  height: 100%;          /* Asegura que el contenedor tenga altura */
 }
 
 .card-container:hover .info-overlay {
