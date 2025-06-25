@@ -16,6 +16,7 @@ import MovieDetails from "./components/MovieDetails.jsx";
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "*", element: <NotFound /> },
+  // { path: "peliculas", elem}
   { path: "peliculas/:id", element: <MovieDetails /> },
 ]);
 

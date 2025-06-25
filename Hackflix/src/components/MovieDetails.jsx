@@ -5,10 +5,10 @@ import axios from "axios";
 
 export default function MovieDetails() {
   const { id } = useParams();
-  const [pelicula, setPelicula] = useState(null);
+  const [peliculas, setPeliculas] = useState(null);
 
   useEffect(() => {
-    const fetchPelicula = async () => {
+    const fetchPeliculas = async () => {
       try {
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}`,
@@ -19,28 +19,28 @@ export default function MovieDetails() {
             },
           }
         );
-        setPelicula(response.data);
+        setPeliculas(response.data);
       } catch (error) {
         console.error("Error cargando detalles:", error);
       }
     };
 
-    fetchPelicula();
+    fetchPeliculas();
   }, [id]);
 
   return (
     <div className="container-fluid text-white py-4">
-      {pelicula && (
+      {peliculas && (
         <>
-          <h2>{pelicula.title}</h2>
+          <h2>{peliculas.title}</h2>
           <img
-            src={`https://image.tmdb.org/t/p/w300${pelicula.poster_path}`}
-            alt={pelicula.title}
+            src={`https://image.tmdb.org/t/p/w300${peliculas.poster_path}`}
+            alt={peliculas.title}
             className="rounded mb-3"
           />
-          <p>{pelicula.overview}</p>
-          <p>⭐ {(pelicula.vote_average / 2).toFixed(0)}</p>
-          <p>Estreno: {pelicula.release_date}</p>
+          <p>{peliculas.overview}</p>
+          <p>⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
+          <p>Estreno: {peliculas.release_date}</p>
         </>
       )}
     </div>

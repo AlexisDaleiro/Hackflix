@@ -125,7 +125,12 @@ export default function ApiInicio({ searchTerm, children }) {
     <div className="container-fluid position-relative mt-4">
       {!searchTerm && <Estrellas filtro={filtro} setFiltro={setFiltro} />}
       {children}
-
+      <h2
+        className="text-white px-5 mb-3"
+        style={{ transition: "opacity 0.3s ease", opacity: 1 }}
+      >
+        Más vistas de la plataforma
+      </h2>
       <div className="scroll-container">
         <button onClick={scrollLeft} className="scroll-button left">
           <LeftArrow />
