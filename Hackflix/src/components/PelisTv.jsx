@@ -7,197 +7,194 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function PelisTv({ searchTerm, children }) {
-  const [peliculas, setPeliculas] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [mostrarTitulo, setMostrarTitulo] = useState(false);
-  const [modal, setModal] = useState(false);
-  const handleCloseModal = () => setModal(false);
+	const [peliculas, setPeliculas] = useState([]);
+	const [page, setPage] = useState(1);
+	const [hasMore, setHasMore] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
+	const [mostrarTitulo, setMostrarTitulo] = useState(false);
+	const [modal, setModal] = useState(false);
+	const handleCloseModal = () => setModal(false);
 
-  const scrollRef = useRef();
+	const scrollRef = useRef();
 
-  const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
+	const scrollLeft = () => {
+		scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+	};
 
-  const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
+	const scrollRight = () => {
+		scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+	};
 
-  const fetchPeliculas = async (pagina = 1, reset = false) => {
-    if (isLoading || !hasMore) return;
-    setIsLoading(true);
+	const fetchPeliculas = async (pagina = 1, reset = false) => {
+		if (isLoading || !hasMore) return;
+		setIsLoading(true);
 
-    try {
-      const params = {
-        api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
-        language: "en-US",
-        sort_by: "popularity.desc",
-        include_adult: false,
-        include_video: false,
-        with_genres: "10751", // Pelis de Tv
-        page: pagina,
-      };
+		try {
+			const params = {
+				api_key: "51f5870eb2fb3938f2ca55d7c2326f86",
+				language: "es-ES",
+				sort_by: "popularity.desc",
+				include_adult: false,
+				include_video: false,
+				with_genres: "10751", // Pelis de Tv
+				page: pagina,
+			};
 
-      const response = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie",
-        {
-          params,
-        }
-      );
+			const response = await axios.get(
+				"https://api.themoviedb.org/3/discover/movie",
+				{
+					params,
+				}
+			);
 
-      const nuevas = response.data.results || [];
+			const nuevas = response.data.results || [];
 
-      if (reset) {
-        setPeliculas(nuevas);
-      } else {
-        setPeliculas((prev) => [...prev, ...nuevas]);
-      }
+			if (reset) {
+				setPeliculas(nuevas);
+			} else {
+				setPeliculas((prev) => [...prev, ...nuevas]);
+			}
 
-      setHasMore(pagina < response.data.total_pages);
-    } catch (error) {
-      console.error("Error al cargar películas:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+			setHasMore(pagina < response.data.total_pages);
+		} catch (error) {
+			console.error("Error al cargar películas:", error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
-  useEffect(() => {
-    const reiniciarYBuscar = async () => {
-      setPeliculas([]);
-      setHasMore(true);
-      setPage(1);
-      await fetchPeliculas(1, true);
-    };
+	useEffect(() => {
+		const reiniciarYBuscar = async () => {
+			setPeliculas([]);
+			setHasMore(true);
+			setPage(1);
+			await fetchPeliculas(1, true);
+		};
 
-    reiniciarYBuscar();
-  }, [searchTerm]);
+		reiniciarYBuscar();
+	}, [searchTerm]);
 
-  useEffect(() => {
-    const el = scrollRef.current;
+	useEffect(() => {
+		const el = scrollRef.current;
 
-    const handleScroll = () => {
-      if (!el || !hasMore || isLoading) return;
+		const handleScroll = () => {
+			if (!el || !hasMore || isLoading) return;
 
-      const scrollRight = el.scrollLeft + el.clientWidth;
-      const maxScroll = el.scrollWidth;
+			const scrollRight = el.scrollLeft + el.clientWidth;
+			const maxScroll = el.scrollWidth;
 
-      if (maxScroll - scrollRight < 300) {
-        const nextPage = page + 1;
-        setPage(nextPage);
-        fetchPeliculas(nextPage);
-      }
-    };
+			if (maxScroll - scrollRight < 300) {
+				const nextPage = page + 1;
+				setPage(nextPage);
+				fetchPeliculas(nextPage);
+			}
+		};
 
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [page, hasMore, isLoading]);
+		el.addEventListener("scroll", handleScroll);
+		return () => el.removeEventListener("scroll", handleScroll);
+	}, [page, hasMore, isLoading]);
 
-  // Mostrar título al hacer scroll vertical
-  useEffect(() => {
-    const handleWindowScroll = () => {
-      setMostrarTitulo(window.scrollY > 200);
-    };
+	// Mostrar título al hacer scroll vertical
+	useEffect(() => {
+		const handleWindowScroll = () => {
+			setMostrarTitulo(window.scrollY > 200);
+		};
 
-    window.addEventListener("scroll", handleWindowScroll);
-    return () => window.removeEventListener("scroll", handleWindowScroll);
-  }, []);
+		window.addEventListener("scroll", handleWindowScroll);
+		return () => window.removeEventListener("scroll", handleWindowScroll);
+	}, []);
 
-  return (
-    <div className="container-fluid position-relative mt-4">
-      {children}
+	return (
+		<div className="container-fluid position-relative mt-4">
+			{children}
 
-      {mostrarTitulo && (
-        <h2
-          className="text-white px-5 mb-3"
-          style={{ transition: "opacity 0.3s ease", opacity: 1 }}
-        >
-          Peliculas de TV
-        </h2>
-      )}
+			{mostrarTitulo && (
+				<h2
+					className="text-white px-5 mb-3"
+					style={{ transition: "opacity 0.3s ease", opacity: 1 }}>
+					Peliculas de TV
+				</h2>
+			)}
 
-      <div className="scroll-container">
-        <button onClick={scrollLeft} className="scroll-button left">
-          <LeftArrow />
-        </button>
+			<div className="scroll-container">
+				<button onClick={scrollLeft} className="scroll-button left">
+					<LeftArrow />
+				</button>
 
-        <div
-          className="d-flex overflow-hidden flex-nowrap px-5"
-          ref={scrollRef}
-          style={{ scrollBehavior: "smooth" }}
-        >
-          {peliculas.length > 0 ? (
-            peliculas
-              .filter((item) => item.poster_path)
-              .map((item) => (
-                <div key={item.id} className="card-container me-3">
-                  <Link
-                    className="text-decoration-none text-white"
-                    to={`/peliculas/${item.id}`}
-                  >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                      alt={item.title}
-                      className="movie-img"
-                    />
+				<div
+					className="d-flex overflow-hidden flex-nowrap px-5"
+					ref={scrollRef}
+					style={{ scrollBehavior: "smooth" }}>
+					{peliculas.length > 0 ? (
+						peliculas
+							.filter((item) => item.poster_path)
+							.map((item) => (
+								<div key={item.id} className="card-container me-3">
+									<Link
+										className="text-decoration-none text-white"
+										to={`/peliculas/${item.id}`}>
+										<img
+											src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+											alt={item.title}
+											className="movie-img"
+										/>
 
-                    <div className="info-overlay p-2">
-                      <h5>{item.title}</h5>
-                      <div className="contenedor-boton">
-                        <button className="vista-boton"
-                          onClick={(e) => {
-                            e.preventDefault(); // evita que haga scroll arriba
-                            setModal(item.id);
-                          }}
-                        >
-                          Vista previa
-                        </button>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))
-          ) : (
-            <p className="text-white px-5">No se encontraron resultados.</p>
-          )}
-        </div>
+										<div className="info-overlay p-2">
+											<h5>{item.title}</h5>
+											<div className="contenedor-boton">
+												<button
+													className="vista-boton"
+													onClick={(e) => {
+														e.preventDefault(); // evita que haga scroll arriba
+														setModal(item.id);
+													}}>
+													Vista previa
+												</button>
+											</div>
+										</div>
+									</Link>
+								</div>
+							))
+					) : (
+						<p className="text-white px-5">No se encontraron resultados.</p>
+					)}
+				</div>
 
-        <button onClick={scrollRight} className="scroll-button right">
-          <RightArrow />
-        </button>
-      </div>
+				<button onClick={scrollRight} className="scroll-button right">
+					<RightArrow />
+				</button>
+			</div>
 
-      {isLoading && (
-        <div className="text-white text-center my-3">
-          <span className="spinner-border spinner-border-sm me-2" />
-          Cargando más películas...
-        </div>
-      )}
-      <div>
-        <Modal show={modal !== false} onHide={handleCloseModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Detalles de la pelicula</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="text-center">
-            {peliculas.map(
-              (item) =>
-                item.id === modal && (
-                  <div key={item.id}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                      alt={item.title}
-                      className="movie-img mb-3 shadow d-inline"
-                    />
-                    <h5>{item.title}</h5>
-                    <p>{item.overview}</p>
-                    <p>⭐ {(item.vote_average / 2).toFixed(0)}</p>
-                  </div>
-                )
-            )}
-          </Modal.Body>
-        </Modal>
-      </div>
-    </div>
-  );
+			{isLoading && (
+				<div className="text-white text-center my-3">
+					<span className="spinner-border spinner-border-sm me-2" />
+					Cargando más películas...
+				</div>
+			)}
+			<div>
+				<Modal show={modal !== false} onHide={handleCloseModal}>
+					<Modal.Header closeButton>
+						<Modal.Title>Detalles de la pelicula</Modal.Title>
+					</Modal.Header>
+					<Modal.Body className="text-center">
+						{peliculas.map(
+							(item) =>
+								item.id === modal && (
+									<div key={item.id}>
+										<img
+											src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+											alt={item.title}
+											className="movie-img mb-3 shadow d-inline"
+										/>
+										<h5>{item.title}</h5>
+										<p>{item.overview}</p>
+										<p>⭐ {(item.vote_average / 2).toFixed(0)}</p>
+									</div>
+								)
+						)}
+					</Modal.Body>
+				</Modal>
+			</div>
+		</div>
+	);
 }
