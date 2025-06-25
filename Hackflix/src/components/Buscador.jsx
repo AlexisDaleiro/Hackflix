@@ -17,7 +17,7 @@ function Buscador({ setSearchTerm, isInBanner = false }) {
     e.preventDefault();
     setSearchTerm(input);
     setInput("");
-    navigate(`/buscar?query=${encodeURIComponent(input)}`);
+    navigate(`/peliculas/busqueda?query=${encodeURIComponent(input)}`);
   };
 
   return (

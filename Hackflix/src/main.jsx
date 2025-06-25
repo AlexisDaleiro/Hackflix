@@ -17,7 +17,7 @@ import PaginaBusqueda from "./components/PaginaBusqueda.jsx";
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "*", element: <NotFound /> },
-  { path: "peliculas", element: <PaginaBusqueda /> },
+  { path: "peliculas/busqueda/:query?", element: <PaginaBusqueda /> },
   { path: "peliculas/:id", element: <MovieDetails /> },
 ]);
 
