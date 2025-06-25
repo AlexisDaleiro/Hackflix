@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
 import Submenu from "./submenu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,9 +29,9 @@ const Navbar = () => {
 				<div className="container-fluid ">
 					<div className="row ">
 						<div className="col-4">
-							<div className="navbar-brand ">
+							<Link className="navbar-brand" to="/">
 								<img src={logo} alt="" width={"160px"} className="" />
-							</div>
+							</Link>
 						</div>
 						<div className="col-3 d-flex justify-content-between responsivo-menu ">
 							<Submenu
