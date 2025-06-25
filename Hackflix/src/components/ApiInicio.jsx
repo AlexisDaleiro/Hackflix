@@ -155,22 +155,20 @@ export default function ApiInicio({ searchTerm, children }) {
                       alt={item.title}
                       className="movie-img"
                     />
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault(); // evita que haga scroll arriba
-                        setModal(item.id);
-                      }}
-                    >
-                      asd
-                    </button>
-                    {/* <div className="info-overlay p-2">
+
+                    <div className="info-overlay p-2">
                       <h5>{item.title}</h5>
-                      <p>
-                        {item.overview.length > 100
-                          ? item.overview.slice(0, 100) + "..."
-                          : item.overview}
-                      </p>
-                    </div> */}
+                      <div>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault(); // evita que haga scroll arriba
+                            setModal(item.id);
+                          }}
+                        >
+                          Vista previa
+                        </button>
+                      </div>
+                    </div>
                   </Link>
 
                   <div style={{ textAlign: "center", marginTop: "5px" }}>
