@@ -3,19 +3,24 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createBrowserRouter, BrowserRouter } from "react-router-dom";
+import NotFound from "./components/NotFound.jsx";
+import ApiInicio from "./components/ApiInicio.jsx";
+
+import {
+  createBrowserRouter,
+  BrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import MovieDetails from "./components/MovieDetails.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
+  { path: "/", element: <App /> },
+  { path: "*", element: <NotFound /> },
+  { path: "peliculas/:id", element: <MovieDetails /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </StrictMode>
 );

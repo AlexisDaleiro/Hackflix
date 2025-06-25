@@ -146,12 +146,12 @@ body {
   width: auto;
 }
 
-.movie-img {
+/* .movie-img {
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
   display: block;
-}
+} no esta funcionando en las imagenes */
 
 .info-overlay {
   position: absolute;
@@ -179,9 +179,9 @@ body {
   border-radius: 0 0 5px 5px;
 }
 
-.card-container:hover {
+/* .card-container:hover {
   transform: scale(1.1);
-}
+} */
 
 @media (max-width: 768px) {
   .responsivo-menu {
