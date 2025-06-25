@@ -44,8 +44,8 @@ export default function MovieCarrousel({ searchTerm, children }) {
         Continuar viendo
       </h2>
       <div className="d-flex justify-content-center">
-        <div //style={{width: "300px"}}>
-        >
+        <div style={{width: "90%"}}>
+        
           <Slider
             slidesToShow={1}
             slidesToScroll={1}
@@ -53,22 +53,32 @@ export default function MovieCarrousel({ searchTerm, children }) {
             autoplaySpeed={4000}
             arrows={true}
             infinite={true}
-            style={{ width: "300px" }}
+            style={{ width: "100%" }}
           >
             {peliculas.map((item) => (
               <div
                 key={item.id}
-                className="card-container me-3 "
-                style={{ textAlign: "center" }}
+                className="card-container"
+                style={{ 
+                  width: "220px",
+                  height: "330px",
+                  margin: "0 auto",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  textAlign: "center",
+                  position: "relative",
+                  alignItems: "center"
+                 }}
               >
-                <div>
+           
                   <img
-                    src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                    src={`/posters/${item.id}.jpg`}
                     alt={item.title}
                     style={{
-                      width: "100%",
+                      width: "500px",
+                      height: "300px",
                       borderRadius: "12px",
-                      // objectFit: "cover",
+                      objectFit: "cover",
                     }}
                     className="justify-content-center align-items-center"
                   />
@@ -85,7 +95,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
                         : item.overview}
                     </p>
                   </div>
-                </div>
+               
               </div>
             ))}
           </Slider>
