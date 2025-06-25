@@ -6,11 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NotFound from "./components/NotFound.jsx";
 import ApiInicio from "./components/ApiInicio.jsx";
 
-import {
-  createBrowserRouter,
-  BrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails.jsx";
 import PaginaBusqueda from "./components/PaginaBusqueda.jsx";
 
