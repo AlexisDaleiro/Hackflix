@@ -50,31 +50,39 @@ export default function MovieDetails() {
 	return (
 		<div className="container-fluid text-white py-4 pt-0">
 			<Navbar />
-			{peliculas && (
-				<>
-					<h2>{peliculas.title}</h2>
-					<img
-						src={`https://image.tmdb.org/t/p/w300${peliculas.poster_path}`}
-						alt={peliculas.title}
-						className="rounded mb-3"
-					/>
-					<p>Estreno: {peliculas.release_date}</p>
-					<p>
-						País:{" "}
-						{peliculas.production_countries.map((pais) => pais.name).join(", ")}
-					</p>
-					{director && <p>Director: {director}</p>}
-					{actores.length > 0 && (
-						<p>Actores: {actores.map((actor) => actor.name).join(", ")}</p>
-					)}
-					<p>Sinopsis: {peliculas.overview}</p>
-					<p>Rating:⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
-				</>
-			)}
-			<div className="d-flex justify-content-end">
-				<Link className="btn btn-danger" to="/">
-					Volver a la pagina de inicio
-				</Link>
+			<div className="container-fluid text-white py-4 row">
+				{peliculas && (
+					<>
+						<div className="d-flex col-md-4 ps-5">
+							<img
+								src={`https://image.tmdb.org/t/p/w400${peliculas.poster_path}`}
+								alt={peliculas.title}
+								className="rounded mb-3 justify-content-center"
+							/>
+						</div>
+						<div className="col-md-8 d-flex flex-column justify-content-between">
+							<h2>{peliculas.title}</h2>
+							<p>Estreno: {peliculas.release_date}</p>
+							<p>
+								País:{" "}
+								{peliculas.production_countries
+									.map((pais) => pais.name)
+									.join(", ")}
+							</p>
+							{director && <p>Director: {director}</p>}
+							{actores.length > 0 && (
+								<p>Actores: {actores.map((actor) => actor.name).join(", ")}</p>
+							)}
+							<p>Sinopsis: {peliculas.overview}</p>
+							<p>Rating:⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
+							<div className="d-flex justify-content-end mt-auto mb-2">
+								<Link className="btn btn-danger" to="/">
+									Volver a la pagina de inicio
+								</Link>
+							</div>
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
