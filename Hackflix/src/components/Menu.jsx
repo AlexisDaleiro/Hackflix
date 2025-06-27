@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { FaUser } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
-import Submenu from "./submenu";
+import Submenu from "./Submenu";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
