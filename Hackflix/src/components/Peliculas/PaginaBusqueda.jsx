@@ -13,7 +13,6 @@ const truncateText = (text, maxWords) => {
 	return words.slice(0, maxWords).join(' ') + '...';
 };
 
-
 const getYear = (date) => {
 	if (!date) return 'N/A';
 	return new Date(date).getFullYear();
