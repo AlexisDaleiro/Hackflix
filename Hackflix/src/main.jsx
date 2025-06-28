@@ -8,7 +8,7 @@ import ApiInicio from "./components/ApiInicio.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails.jsx";
-import PaginaBusqueda from "./components/PaginaBusqueda.jsx";
+import PaginaBusqueda from "./components/Peliculas/PaginaBusqueda.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
