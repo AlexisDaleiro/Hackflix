@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../Menu";
+import "./PaginaBusqueda.css";
 
-// Función para truncar texto a un número específico de palabras
+
 const truncateText = (text, maxWords) => {
 	if (!text) return 'Descripción no disponible';
 	const words = text.split(' ');
@@ -12,16 +13,16 @@ const truncateText = (text, maxWords) => {
 	return words.slice(0, maxWords).join(' ') + '...';
 };
 
-// Función para obtener el año de la fecha de lanzamiento
+
 const getYear = (date) => {
 	if (!date) return 'N/A';
 	return new Date(date).getFullYear();
 };
 
-// Función para renderizar rating con estrellas
+
 const renderStars = (rating) => {
 	if (!rating) return '☆☆☆☆☆';
-	const stars = Math.round(rating / 2); // Convierte de 10 a 5 estrellas
+	const stars = Math.round(rating / 2);
 	return '★'.repeat(stars) + '☆'.repeat(5 - stars);
 };
 
@@ -91,8 +92,8 @@ export default function PaginaBusqueda() {
 								to={`/peliculas/${pelicula.id}`}
 								className="text-decoration-none"
 							>
-								<div className="card movie-card h-100 shadow-sm">
-									{/* Imagen de la película */}
+								<div className="card movie-card dark-theme h-100 shadow-sm">
+
 									<img
 										src={
 											pelicula.poster_path
@@ -104,33 +105,32 @@ export default function PaginaBusqueda() {
 										loading="lazy"
 									/>
 
-									{/* Contenido de la card */}
 									<div className="card-body d-flex flex-column">
-										{/* Título */}
-										<h5 className="card-title text-dark fw-bold">
+
+										<h5 className="card-title">
 											{pelicula.title}
 										</h5>
 
-										{/* Descripción truncada */}
-										<p className="card-text text-muted flex-grow-1">
+
+										<p className="card-text flex-grow-1">
 											{truncateText(pelicula.overview, 15)}
 										</p>
 
-										{/* Footer con información adicional */}
 										<div className="card-footer bg-transparent border-0 px-0 mt-auto">
 											<div className="d-flex justify-content-between align-items-center">
-												{/* Rating */}
+
 												<div className="d-flex align-items-center">
 													<span className="text-warning me-2">
 														{renderStars(pelicula.vote_average)}
 													</span>
-													<small className="text-muted">
+
+													<small className="movie-rating">
 														{pelicula.vote_average ? pelicula.vote_average.toFixed(1) : 'N/A'}
 													</small>
 												</div>
 
-												{/* Año */}
-												<small className="text-muted fw-semibold">
+
+												<small className="movie-year fw-semibold">
 													{getYear(pelicula.release_date)}
 												</small>
 											</div>
