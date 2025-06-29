@@ -66,7 +66,7 @@ export default function PaginaBusqueda() {
 
 			<div className="container mt-4">
 				<h1 className="text-center mb-4">
-					Resultados de la búsqueda: <span className="text-primary">"{query}"</span>
+					Resultados de la búsqueda: <span className="text-light">"{query}"</span>
 				</h1>
 
 				{loading && (
@@ -84,16 +84,19 @@ export default function PaginaBusqueda() {
 					</div>
 				)}
 
-				<div className="row">
+				<div className="row card-container">
 					{peliculas.map((pelicula) => (
-						<div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={pelicula.id}>
+						<div className="col-lg-3 col-md-4 col-sm-6 mb-1 " key={pelicula.id}>
 							<Link
 								to={`/peliculas/${pelicula.id}`}
 								className="text-decoration-none"
 							>
-								<div className="card movie-card dark-theme h-100 shadow-sm">
+								<div className="card movie-card dark-theme shadow-sm"
+												 style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500${pelicula.poster_path})`}}
+								>
 
-									<img
+
+									{/* <img
 										src={
 											pelicula.poster_path
 												? `https://image.tmdb.org/t/p/w500${pelicula.poster_path}`
@@ -102,7 +105,7 @@ export default function PaginaBusqueda() {
 										className="card-img-top"
 										alt={pelicula.title}
 										loading="lazy"
-									/>
+									/> */}
 
 									<div className="card-body d-flex flex-column">
 
