@@ -18,7 +18,9 @@ const Banner = ({ setSearchTerm }) => {
         flexDirection: "column",
       }}
     >
-      <Buscador setSearchTerm={setSearchTerm} isInBanner />
+      <div className="buscadorBanner">
+        <Buscador />
+      </div>
     </div>
   );
 };

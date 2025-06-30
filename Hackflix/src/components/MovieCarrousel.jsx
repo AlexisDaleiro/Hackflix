@@ -44,13 +44,12 @@ export default function MovieCarrousel({ searchTerm, children }) {
         Continuar viendo
       </h2>
       <div className="d-flex justify-content-center">
-        <div style={{width: "90%"}}>
-        
+        <div style={{ width: "90%" }}>
           <Slider
-            slidesToShow={1}
+            slidesToShow={3}
             slidesToScroll={1}
-            autoplay={false}
-            autoplaySpeed={4000}
+            autoplay={true}
+            autoplaySpeed={3000}
             arrows={true}
             infinite={true}
             style={{ width: "100%" }}
@@ -59,7 +58,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
               <div
                 key={item.id}
                 className="card-container"
-                style={{ 
+                style={{
                   width: "220px",
                   height: "330px",
                   margin: "0 auto",
@@ -67,35 +66,33 @@ export default function MovieCarrousel({ searchTerm, children }) {
                   borderRadius: "12px",
                   textAlign: "center",
                   position: "relative",
-                  alignItems: "center"
-                 }}
+                  alignItems: "center",
+                }}
               >
-           
-                  <img
-                    src={`/posters/${item.id}.jpg`}
-                    alt={item.title}
-                    style={{
-                      width: "500px",
-                      height: "300px",
-                      borderRadius: "12px",
-                      objectFit: "cover",
-                    }}
-                    className="justify-content-center align-items-center"
-                  />
-                  <div
-                    className="info-overlay p-2 justify-content-center"
-                    style={{ width: "100%" }}
-                  >
-                    <h5 className="text-white mt-2 justify-content-center">
-                      {item.title}
-                    </h5>
-                    <p className="text-white justify-content-center">
-                      {item.overview.length > 100
-                        ? item.overview.slice(0, 100) + "..."
-                        : item.overview}
-                    </p>
-                  </div>
-               
+                <img
+                  src={`/posters/${item.id}.jpg`}
+                  alt={item.title}
+                  style={{
+                    width: "500px",
+                    height: "300px",
+                    borderRadius: "12px",
+                    objectFit: "cover",
+                  }}
+                  className="justify-content-center align-items-center"
+                />
+                <div
+                  className="info-overlay p-2 justify-content-center"
+                  style={{ width: "85%" }}
+                >
+                  <h5 className="text-white mt-2 justify-content-center">
+                    {item.title}
+                  </h5>
+                  <p className="text-white justify-content-center">
+                    {item.overview.length > 100
+                      ? item.overview.slice(0, 100) + "..."
+                      : item.overview}
+                  </p>
+                </div>
               </div>
             ))}
           </Slider>

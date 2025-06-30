@@ -146,18 +146,10 @@ body {
   width: auto;
 }
 
-.vista-boton{
-background-color: #c60a0a;
-color: white;
+.vista-boton {
+  background-color: #c60a0a;
+  color: white;
 }
-
-
-/* .movie-img {
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
-  display: block;
-} no esta funcionando en las imagenes */
 
 .info-overlay {
   position: absolute;
@@ -179,10 +171,10 @@ color: white;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  align-items: center;   /* Centra horizontalmente */
+  align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
-  text-align: center;    /* Centra el texto dentro del h5 */
-  height: 100%;          /* Asegura que el contenedor tenga altura */
+  text-align: center; /* Centra el texto dentro del h5 */
+  height: 100%; /* Asegura que el contenedor tenga altura */
 }
 
 .card-container:hover .info-overlay {
@@ -190,10 +182,6 @@ color: white;
   transform: translateY(0);
   border-radius: 0 0 5px 5px;
 }
-
-/* .card-container:hover {
-  transform: scale(1.1);
-} */
 
 @media (max-width: 768px) {
   .responsivo-menu {
@@ -204,9 +192,12 @@ color: white;
 .buscador-responsivo {
   max-width: 660px;
   width: 100%;
-  margin-top: 130px;
 }
-
+.buscadorBanner {
+  margin-top: 130px;
+  max-width: 660px;
+  width: 100%;
+}
 @media (max-width: 768px) {
   .buscador-responsivo {
     max-width: 80%;
