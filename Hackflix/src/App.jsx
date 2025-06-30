@@ -18,15 +18,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <Banner setSearchTerm={setSearchTerm} />
+      <Banner />
       <MovieCarrousel></MovieCarrousel>
-      <Api searchTerm={searchTerm}>
-        {searchTerm && (
-          <p className="text-white px-5 fs-3 mt-2 mb-4">
-            Resultados para: <strong>{searchTerm}</strong>
-          </p>
-        )}
-      </Api>
+      <Api></Api>
 
       <Thriller></Thriller>
       <Animacion></Animacion>
