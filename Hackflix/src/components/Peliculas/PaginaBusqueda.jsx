@@ -74,13 +74,18 @@ export default function PaginaBusqueda() {
   }, [query]);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" id="top">
       <Navbar />
       {query && (
         <div className="text-center text-light mb-4">
           <h1>Resultados de la búsqueda para: "{query}"</h1>
           <h3 className="mb-3">🔍 O quieres buscar otra pelicula?</h3>
           <div className="d-flex justify-content-center mb-3">
+            <Link className="btn btn-danger me-2 pt-2" to="/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+</svg>
+                </Link>
             <Buscador />
           </div>
         </div>
@@ -174,6 +179,20 @@ export default function PaginaBusqueda() {
             </div>
           </InfiniteScroll>
         )}
+        <div><button
+  className="btn btn-danger"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  style={{
+    position: "fixed",
+    right: "20px",
+    bottom: "20px",
+    zIndex: 1000,
+  }}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
+</svg>
+</button></div>
       </div>
     </div>
   );
