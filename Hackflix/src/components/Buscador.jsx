@@ -45,8 +45,8 @@ function Buscador({}) {
         Buscar
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="15"
+          height="15"
           fill="currentColor"
           className="bi bi-backspace-fill ms-2 mb-1"
           viewBox="0 0 16 16"

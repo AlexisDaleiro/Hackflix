@@ -2,7 +2,7 @@ import React from "react";
 import hero from "../assets/hero.png";
 import Buscador from "./Buscador";
 
-const Banner = ({ setSearchTerm }) => {
+const Banner = () => {
   return (
     <div
       className="d-flex justify-content-center align-items-center text-center banner"

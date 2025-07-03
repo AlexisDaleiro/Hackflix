@@ -44,6 +44,7 @@ body {
     rgba(0, 0, 0, 0) 100%
   );
 }
+
 .menu-container {
   position: relative; /* Permite posicionar el submenu */
   display: inline-block; /* Para que el menú principal se comporte como bloque */
@@ -193,10 +194,18 @@ body {
   max-width: 660px;
   width: 100%;
 }
+@media (max-width: 768px) {
+  .buscador-responsivo {
+    display: flex;
+    justify-content: center;
+  }
+}
 .buscadorBanner {
   margin-top: 130px;
   max-width: 660px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 @media (max-width: 768px) {
   .buscador-responsivo {

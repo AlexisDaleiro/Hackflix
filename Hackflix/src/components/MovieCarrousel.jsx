@@ -114,7 +114,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
                 />
                 <div
                   className="info-overlay p-2 justify-content-center"
-                  style={{ width: "85%" }}
+                  style={{ width: "90%" }}
                 >
                   <h5 className="text-white mt-2 justify-content-center">
                     {item.title}
