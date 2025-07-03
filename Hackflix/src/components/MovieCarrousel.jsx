@@ -5,10 +5,12 @@ import { RightArrow } from "../assets/RightArrow";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React, { Component } from "react";
+import React from "react";
 
 export default function MovieCarrousel({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
+  const [ordenAscendente, setOrdenAscendente] = useState(true);
+  const [autoplay, setAutoplay] = useState(true);
   const scrollRef = useRef();
 
   const scrollLeft = () => {
@@ -17,6 +19,17 @@ export default function MovieCarrousel({ searchTerm, children }) {
 
   const scrollRight = () => {
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
+  const ordenarPorTitulo = () => {
+    const ordenadas = [...peliculas].sort((a, b) =>
+      ordenAscendente
+        ? a.title.localeCompare(b.title)
+        : b.title.localeCompare(a.title)
+    );
+    setPeliculas(ordenadas);
+    setOrdenAscendente(!ordenAscendente);
+    setAutoplay(false); // Detener autoplay al ordenar
   };
 
   useEffect(() => {
@@ -40,15 +53,34 @@ export default function MovieCarrousel({ searchTerm, children }) {
     <div className="container-fluid position-relative mt-4">
       {children}
 
-      <h2 className="text-white px-5 mb-3" style={{ transition: "0.3s ease" }}>
-        Continuar viendo
-      </h2>
+      <div className="d-flex justify-content-between align-items-center px-5">
+        <h2 className="text-white mb-3" style={{ transition: "0.3s ease" }}>
+          Continuar viendo
+        </h2>
+
+        {/* Botón que alterna entre A → Z y Z → A */}
+        <button
+          onClick={ordenarPorTitulo}
+          style={{
+            backgroundColor: "#e50914",
+            color: "white",
+            padding: "6px 14px",
+            border: "none",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          {ordenAscendente ? "A → Z" : "Z → A"}
+        </button>
+      </div>
+
       <div className="d-flex justify-content-center">
         <div style={{ width: "90%" }}>
           <Slider
             slidesToShow={3}
             slidesToScroll={1}
-            autoplay={true}
+            autoplay={autoplay}
             autoplaySpeed={3000}
             arrows={true}
             infinite={true}

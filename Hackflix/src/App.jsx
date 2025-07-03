@@ -21,7 +21,6 @@ function App() {
       <Banner />
       <MovieCarrousel></MovieCarrousel>
       <Api></Api>
-
       <Thriller></Thriller>
       <Animacion></Animacion>
       <PelisTv></PelisTv>
