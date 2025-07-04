@@ -36,7 +36,7 @@ export default function PelisTv({ searchTerm, children }) {
         sort_by: "popularity.desc",
         include_adult: false,
         include_video: false,
-        with_genres: "10751", // Pelis de Tv
+        with_genres: "10751", 
         page: pagina,
       };
 
@@ -94,7 +94,7 @@ export default function PelisTv({ searchTerm, children }) {
     return () => el.removeEventListener("scroll", handleScroll);
   }, [page, hasMore, isLoading]);
 
-  // Mostrar título al hacer scroll vertical
+  
   useEffect(() => {
     const handleWindowScroll = () => {
       setMostrarTitulo(window.scrollY > 200);
@@ -148,7 +148,7 @@ export default function PelisTv({ searchTerm, children }) {
                         <button
                           className="vista-boton"
                           onClick={(e) => {
-                            e.preventDefault(); // evita que haga scroll arriba
+                            e.preventDefault(); 
                             setModal(item.id);
                           }}
                         >

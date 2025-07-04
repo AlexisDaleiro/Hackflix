@@ -46,18 +46,18 @@ body {
 }
 
 .menu-container {
-  position: relative; /* Permite posicionar el submenu */
-  display: inline-block; /* Para que el menú principal se comporte como bloque */
+  position: relative;
+  display: inline-block; 
   background-color: black;
 }
 
 .submenu {
-  display: none; /* Oculta el submenu por defecto */
-  position: absolute; /* Posiciona el submenu con respecto al contenedor */
+  display: none;
+  position: absolute; 
   background-color: #020000;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1; /* Asegura que el submenu esté encima */
+  z-index: 1;
 }
 
 .submenu a {
@@ -72,7 +72,7 @@ body {
 }
 
 .menu-container:hover .submenu {
-  display: block; /* Muestra el submenu al pasar el cursor */
+  display: block;
 }
 
 .menu-principal {
@@ -86,11 +86,11 @@ body {
 }
 
 .submenu li {
-  position: relative; /* Permite posicionar los submenús */
+  position: relative; 
 }
 
 .submenu li ul {
-  display: none; /* Oculta los submenús */
+  display: none; 
   position: absolute;
   top: 100%;
   left: 150px;
@@ -98,7 +98,7 @@ body {
 }
 
 .submenu li:hover > ul {
-  display: block; /* Muestra el submenú al pasar el ratón */
+  display: block; 
   background-color: black;
   top: 20%;
 }
@@ -172,10 +172,10 @@ body {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
-  justify-content: center; /* Centra verticalmente */
-  text-align: center; /* Centra el texto dentro del h5 */
-  height: 100%; /* Asegura que el contenedor tenga altura */
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  height: 100%;
 }
 
 .card-container:hover .info-overlay {

@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { LeftArrow } from "../assets/LeftArrow";
 import { RightArrow } from "../assets/RightArrow";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
@@ -101,6 +102,16 @@ export default function MovieCarrousel({ searchTerm, children }) {
                   alignItems: "center",
                 }}
               >
+                <Link 
+                  to={`/peliculas/${item.id}`} 
+                  className="text-decoration-none"
+                  style={{
+                    position: "relative",
+                    zIndex: 10, 
+                    display: "block",
+                    height: "100%",
+                  }}
+                >
                 <img
                   src={`/posters/${item.id}.jpg`}
                   alt={item.title}
@@ -109,12 +120,16 @@ export default function MovieCarrousel({ searchTerm, children }) {
                     height: "300px",
                     borderRadius: "12px",
                     objectFit: "cover",
+                    cursor: "pointer",
                   }}
                   className="justify-content-center align-items-center"
                 />
+                
                 <div
                   className="info-overlay p-2 justify-content-center"
-                  style={{ width: "90%" }}
+                  style={{ width: "90%",
+                  pointerEvents: "none",
+                   }}
                 >
                   <h5 className="text-white mt-2 justify-content-center">
                     {item.title}
@@ -125,6 +140,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
                       : item.overview}
                   </p>
                 </div>
+                 </Link>
               </div>
             ))}
           </Slider>

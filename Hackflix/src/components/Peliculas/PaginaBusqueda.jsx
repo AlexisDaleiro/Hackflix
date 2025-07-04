@@ -65,12 +65,12 @@ export default function PaginaBusqueda() {
   };
 
   useEffect(() => {
-    if (!query) return; // 🛑 No hagas nada si no hay búsqueda
+    if (!query) return; 
 
     setPeliculas([]);
     setPage(1);
     setHasMore(true);
-    fetchPeliculas(1); // 👉 ahora pasamos la página manualmente
+    fetchPeliculas(1); 
   }, [query]);
 
   return (

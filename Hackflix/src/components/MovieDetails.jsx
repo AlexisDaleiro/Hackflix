@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Menu";
+import { reseñasPersonalizadas } from "../Data/ReseñasPersonalizadas";
+
+
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -33,6 +36,7 @@ export default function MovieDetails() {
             },
           }
         );
+
         const directorInfo = creditsResponse.data.crew.find(
           (member) => member.job === "Director"
         );
@@ -47,6 +51,13 @@ export default function MovieDetails() {
     fetchPeliculas();
   }, [id]);
 
+ const obtenerSinopsis = () => {
+    return reseñasPersonalizadas[id].sinopsis || peliculas.overview;
+  };
+  const obtenerResenia = ()  => {
+    return reseñasPersonalizadas[id].resenia ;
+  };
+  
   return (
     <div className="container-fluid text-white py-4 pt-0">
       <Navbar />
@@ -61,20 +72,22 @@ export default function MovieDetails() {
               />
             </div>
             <div className="col-md-8 d-flex flex-column justify-content-between">
-              <h2>{peliculas.title}</h2>
-              <p>Estreno: {peliculas.release_date}</p>
+              <h2 ><b>{peliculas.title}</b></h2>
+              <p><b>Estreno:</b> {peliculas.release_date}</p>
               <p>
-                País:{" "}
+                <b>País:</b>{" "}
                 {peliculas.production_countries
                   .map((pais) => pais.name)
                   .join(", ")}
               </p>
-              {director && <p>Director: {director}</p>}
+              {director && <p><b>Director:</b> {director}</p>}
               {actores.length > 0 && (
-                <p>Actores: {actores.map((actor) => actor.name).join(", ")}</p>
+                <p><b>Actores:</b> {actores.map((actor) => actor.name).join(", ")}</p>
               )}
-              <p>Sinopsis: {peliculas.overview}</p>
-              <p>Rating:⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
+              <p> {obtenerSinopsis()}</p>
+              <p> {obtenerResenia()}</p>
+
+              <p><b>Rating:</b>⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
               <div className="d-flex justify-content-end mt-auto mb-2">
                 <Link className="btn btn-danger" to="/">
                   Volver a la pagina de inicio
