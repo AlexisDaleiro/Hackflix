@@ -52,11 +52,11 @@ export default function MovieDetails() {
   }, [id]);
 
  const obtenerSinopsis = () => {
-    return reseñasPersonalizadas[id].sinopsis || peliculas.overview;
+    return reseñasPersonalizadas[id] || peliculas.overview;
   };
-  const obtenerResenia = ()  => {
-    return reseñasPersonalizadas[id].resenia ;
-  };
+  // const obtenerResenia = ()  => {
+  //   return reseñasPersonalizadas[id] ;
+  // };
   
   return (
     <div className="container-fluid text-white py-4 pt-0">
@@ -84,8 +84,8 @@ export default function MovieDetails() {
               {actores.length > 0 && (
                 <p><b>Actores:</b> {actores.map((actor) => actor.name).join(", ")}</p>
               )}
-              <p> {obtenerSinopsis()}</p>
-              <p> {obtenerResenia()}</p>
+              <p style={{ whiteSpace: 'pre-line' }}> {obtenerSinopsis()}</p>
+             {/* <p>{obtenerResenia()}</p> */}
 
               <p><b>Rating:</b>⭐ {(peliculas.vote_average / 2).toFixed(0)}</p>
               <div className="d-flex justify-content-end mt-auto mb-2">

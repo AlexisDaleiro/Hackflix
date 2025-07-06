@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Thriller from "./components/Triller";
 import Animacion from "./components/Animacion";
 import PelisTv from "./components/PelisTv";
-import MovieLengua from "./components/MovieLengua";
+
 import MovieCarrousel from "./components/MovieCarrousel";
 
 function App() {
