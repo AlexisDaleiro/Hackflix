@@ -36,7 +36,7 @@ export default function Thriller({ searchTerm, children }) {
         sort_by: "popularity.desc",
         include_adult: false,
         include_video: false,
-        with_genres: "53", // Thriller
+        with_genres: "53", 
         page: pagina,
       };
 
@@ -94,7 +94,7 @@ export default function Thriller({ searchTerm, children }) {
     return () => el.removeEventListener("scroll", handleScroll);
   }, [page, hasMore, isLoading]);
 
-  // Mostrar título al hacer scroll en la ventana
+
   useEffect(() => {
     const handleWindowScroll = () => {
       setMostrarTitulo(window.scrollY > 200);
@@ -143,7 +143,7 @@ export default function Thriller({ searchTerm, children }) {
                         <button
                           className="vista-boton"
                           onClick={(e) => {
-                            e.preventDefault(); // evita que haga scroll arriba
+                            e.preventDefault();
                             setModal(item.id);
                           }}
                         >

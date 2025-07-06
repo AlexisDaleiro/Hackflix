@@ -1,12 +1,9 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import { LeftArrow } from "../assets/LeftArrow";
-import { RightArrow } from "../assets/RightArrow";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
 
 export default function MovieCarrousel({ searchTerm, children }) {
   const [peliculas, setPeliculas] = useState([]);
@@ -14,13 +11,6 @@ export default function MovieCarrousel({ searchTerm, children }) {
   const [autoplay, setAutoplay] = useState(true);
   const scrollRef = useRef();
 
-  const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
 
   const ordenarPorTitulo = () => {
     const ordenadas = [...peliculas].sort((a, b) =>
@@ -30,7 +20,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
     );
     setPeliculas(ordenadas);
     setOrdenAscendente(!ordenAscendente);
-    setAutoplay(false); // Detener autoplay al ordenar
+    setAutoplay(false); 
   };
 
   useEffect(() => {
@@ -55,11 +45,13 @@ export default function MovieCarrousel({ searchTerm, children }) {
       {children}
 
       <div className="d-flex justify-content-between align-items-center px-5">
-        <h2 className="text-white mb-3" style={{ transition: "0.3s ease" }}>
+
+        <h2 className="text-white mb-3" 
+        style={{ transition: "0.3s ease" }}>
           Continuar viendo
         </h2>
 
-        {/* Botón que alterna entre A → Z y Z → A */}
+    
         <button
           onClick={ordenarPorTitulo}
           style={{
@@ -127,13 +119,15 @@ export default function MovieCarrousel({ searchTerm, children }) {
                 
                 <div
                   className="info-overlay p-2 justify-content-center"
-                  style={{ width: "90%",
+                  style={{ 
+                  width: "90%",
                   pointerEvents: "none",
                    }}
                 >
                   <h5 className="text-white mt-2 justify-content-center">
                     {item.title}
                   </h5>
+
                   <p className="text-white justify-content-center">
                     {item.overview.length > 100
                       ? item.overview.slice(0, 100) + "..."
