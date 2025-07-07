@@ -11,7 +11,6 @@ export default function MovieCarrousel({ searchTerm, children }) {
   const [autoplay, setAutoplay] = useState(true);
   const scrollRef = useRef();
 
-
   const ordenarPorTitulo = () => {
     const ordenadas = [...peliculas].sort((a, b) =>
       ordenAscendente
@@ -20,7 +19,7 @@ export default function MovieCarrousel({ searchTerm, children }) {
     );
     setPeliculas(ordenadas);
     setOrdenAscendente(!ordenAscendente);
-    setAutoplay(false); 
+    setAutoplay(false);
   };
 
   useEffect(() => {
@@ -45,13 +44,10 @@ export default function MovieCarrousel({ searchTerm, children }) {
       {children}
 
       <div className="d-flex justify-content-between align-items-center px-5">
-
-        <h2 className="text-white mb-3" 
-        style={{ transition: "0.3s ease" }}>
+        <h2 className="text-white mb-3" style={{ transition: "0.3s ease" }}>
           Continuar viendo
         </h2>
 
-    
         <button
           onClick={ordenarPorTitulo}
           style={{
@@ -94,47 +90,48 @@ export default function MovieCarrousel({ searchTerm, children }) {
                   alignItems: "center",
                 }}
               >
-                <Link 
-                  to={`/peliculas/${item.id}`} 
+                <Link
+                  to={`/peliculas/${item.id}`}
                   className="text-decoration-none"
                   style={{
                     position: "relative",
-                    zIndex: 10, 
+                    zIndex: 10,
                     display: "block",
                     height: "100%",
                   }}
                 >
-                <img
-                  src={`/posters/${item.id}.jpg`}
-                  alt={item.title}
-                  style={{
-                    width: "500px",
-                    height: "300px",
-                    borderRadius: "12px",
-                    objectFit: "cover",
-                    cursor: "pointer",
-                  }}
-                  className="justify-content-center align-items-center"
-                />
-                
-                <div
-                  className="info-overlay p-2 justify-content-center"
-                  style={{ 
-                  width: "90%",
-                  pointerEvents: "none",
-                   }}
-                >
-                  <h5 className="text-white mt-2 justify-content-center">
-                    {item.title}
-                  </h5>
+                  <img
+                    src={`/posters/${item.id}.jpg`}
+                    alt={item.title}
+                    style={{
+                      width: "500px",
+                      height: "300px",
+                      borderRadius: "12px",
+                      objectFit: "cover",
+                      cursor: "pointer",
+                    }}
+                    className="justify-content-center align-items-center"
+                  />
 
-                  <p className="text-white justify-content-center">
-                    {item.overview.length > 100
-                      ? item.overview.slice(0, 100) + "..."
-                      : item.overview}
-                  </p>
-                </div>
-                 </Link>
+                  <div
+                    className="info-overlay p-2 justify-content-center"
+                    style={{
+                      borderRadius: "12px",
+                      width: "100%",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <h5 className="text-white mt-2 justify-content-center">
+                      {item.title}
+                    </h5>
+
+                    <p className="text-white justify-content-center">
+                      {item.overview.length > 100
+                        ? item.overview.slice(0, 100) + "..."
+                        : item.overview}
+                    </p>
+                  </div>
+                </Link>
               </div>
             ))}
           </Slider>
